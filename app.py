@@ -158,7 +158,7 @@ def predict_mammogram():
 # A welcome message to test our server
 @app.route('/')
 def index():
-    return "<h1>Welcome to our Breast Cancer Assistant API !!</h1> <p>max_age = ", max_age , " </p>"
+    return max_age
 
 if __name__ == '__main__':
     """# Import dataset"""
