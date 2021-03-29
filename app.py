@@ -226,16 +226,16 @@ if __name__ == '__main__':
         X[feature] = X[feature].astype('category')
 
     #Save min and max of numerical variables
-    #global min_age
+    global min_age
     min_age = X['age_c'].min()
     
-    #global max_age 
+    global max_age 
     max_age = X['age_c'].max()
 
-    #global min_bmi
+    global min_bmi
     min_bmi = X['bmi_c'].max()
 
-    #global max_bmi
+    global max_bmi
     max_bmi = X['bmi_c'].min() 
 
     # Preprocessing for numerical features : Normalize same as Standard Scaler
@@ -249,8 +249,10 @@ if __name__ == '__main__':
     x_train, x_test, y_train, y_test = train_test_split(X,y,test_size = 0.2,random_state=0)
     
     """## Random Forest"""
-    #global model
+    global model
     model = RandomForestClassifier(n_estimators=1000, random_state=1)
+    
+    global model
     model.fit(x_train,y_train)
 
     app.run(port=5002)
