@@ -42,7 +42,7 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route('/mammogram',methods=['POST'])
-def predict_mammogram:
+def predict_mammogram():
     if request.method == 'POST':
         val = 50
         data = request.get_json()
