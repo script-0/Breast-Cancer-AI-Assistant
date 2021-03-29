@@ -229,8 +229,8 @@ def init_model():
     model = RandomForestClassifier(n_estimators=1000, random_state=1)
    
     #global model
-    #model.fit(x_train,y_train)
-    model.fit(X,y)
+    model.fit(x_train,y_train)
+    #model.fit(X,y)
 
 if __name__ == '__main__':
     app.run(port=5002)
