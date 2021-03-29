@@ -61,6 +61,10 @@ CORS(app)
 
 @app.route('/mammogram',methods=['POST'])
 def predict_mammogram():
+    global min_age
+    global max_age 
+    global max_bmi
+    
     if request.method == 'POST':
         val = 50
         data = request.get_json()
