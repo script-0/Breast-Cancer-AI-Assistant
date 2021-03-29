@@ -73,7 +73,8 @@ def predict_mammogram():
             min_age = data['age']
             print('Updating min age')
         else:
-            
+            pass
+
         #update min and max bmi
         if (data['bmi'] > max_bmi):
             max_bmi = data['bmi']
@@ -82,6 +83,7 @@ def predict_mammogram():
             min_age = data['bmi']
             print('Updating min bmi')
         else:
+            pass
 
         #normalize age
         data['age'] = (data['age'] - min_age)/(max_age-min_age)
@@ -89,7 +91,6 @@ def predict_mammogram():
         #normalize bmi
         data['bmi'] = (data['bmi'] - min_bmi)/(max_bmi-min_bmi)
 
-        
         ar = np.array([[data['age'], 
                         data['bmi'], 
                         1 if data['density']==1 else 0,
