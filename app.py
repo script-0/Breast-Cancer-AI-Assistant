@@ -196,7 +196,7 @@ if __name__ == '__main__':
     max_age = X['age_c'].max()
 
     global min_bmi
-    min_bmi = , X['bmi_c'].max()
+    min_bmi = X['bmi_c'].max()
 
     global max_bmi
     max_bmi = X['bmi_c'].min() 
