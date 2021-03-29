@@ -222,7 +222,7 @@ def init_model():
     X = pd.get_dummies(X)
 
     # Split training samples and test samples
-    #x_train, x_test, y_train, y_test = train_test_split(X,y,test_size = 0.2,random_state=0)
+    x_train, x_test, y_train, y_test = train_test_split(X,y,test_size = 0.2,random_state=0)
     
     """## Random Forest"""
     global model
@@ -233,4 +233,4 @@ def init_model():
     #model.fit(X,y)
 
 if __name__ == '__main__':
-    app.run(port=5002)
+    app.run(debug=True, use_reloader=False)
