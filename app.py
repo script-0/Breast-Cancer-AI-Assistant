@@ -12,25 +12,25 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
 #Global variables
-global seed
+#global seed
 seed=11
 
-global DATA_PATH
+#global DATA_PATH
 DATA_PATH = "dataset/breast_mammogram_dataset.csv"
 
-global max_age
+#global max_age
 max_age=0
 
-global min_age
+#global min_age
 min_age=0 
 
-global max_bmi
+#global max_bmi
 max_bmi=0
 
-global min_bmi
+#global min_bmi
 min_bmi=0
 
-global final_df_columns
+#global final_df_columns
 final_df_columns = ['age_c', 
                     'bmi_c', 
                     'density_c_1.0', 
@@ -53,7 +53,7 @@ final_df_columns = ['age_c',
                     'mammtype_2.0'
                     ]
 
-global model
+#global model
 
 app = Flask(__name__)
 CORS(app)
@@ -189,16 +189,16 @@ if __name__ == '__main__':
         X[feature] = X[feature].astype('category')
 
     #Save min and max of numerical variables
-    global min_age
+    #global min_age
     min_age = X['age_c'].min()
     
-    global max_age 
+    #global max_age 
     max_age = X['age_c'].max()
 
-    global min_bmi
+    #global min_bmi
     min_bmi = X['bmi_c'].max()
 
-    global max_bmi
+    #global max_bmi
     max_bmi = X['bmi_c'].min() 
 
     # Preprocessing for numerical features : Normalize same as Standard Scaler
@@ -212,8 +212,8 @@ if __name__ == '__main__':
     x_train, x_test, y_train, y_test = train_test_split(X,y,test_size = 0.2,random_state=0)
     
     """## Random Forest"""
-    global model
+    #global model
     model = RandomForestClassifier(n_estimators=1000, random_state=1)
     model.fit(x_train,y_train)
 
-    app.run(threaded=True, port=5002)
+    app.run(port=5002)
