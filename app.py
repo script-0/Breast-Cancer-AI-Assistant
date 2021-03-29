@@ -81,11 +81,10 @@ def predict_mammogram():
 
         #update min and max age 
         if (data['age'] > max_age):
-            global max_age
             max_age = data['age']
             print('Updating max age')
         elif (data['age'] < min_age):
-            global min_age
+            # global min_age
             min_age = data['age']
             print('Updating min age')
         else:
@@ -93,11 +92,11 @@ def predict_mammogram():
 
         #update min and max bmi
         if (data['bmi'] > max_bmi):
-            global max_age
+            #global max_age
             max_bmi = data['bmi']
             print('Updating max bmi')
         elif (data['bmi'] < min_bmi):
-            global min_bmi
+            #global min_bmi
             min_bmi = data['bmi']
             print('Updating min bmi')
         else:
