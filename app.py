@@ -12,15 +12,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
 #Global variables
-seed=11
-DATA_PATH = "dataset/breast_mammogram_dataset.csv"
+global seed=11
+global DATA_PATH = "dataset/breast_mammogram_dataset.csv"
 
-max_age=0
-min_age=0 
-max_bmi=0
-min_bmi=0
+global max_age=0
+global min_age=0 
+global max_bmi=0
+global min_bmi=0
 
-final_df_columns = ['age_c', 
+global final_df_columns = ['age_c', 
                     'bmi_c', 
                     'density_c_1.0', 
                     'density_c_2.0', 
@@ -66,30 +66,30 @@ def predict_mammogram():
         '''
 
         #update min and max age 
-        if (data['age'] > max_age):
-            max_age = data['age']
+        if (data['age'] > global max_age):
+            global max_age = data['age']
             print('Updating max age')
-        elif (data['age'] < min_age):
-            min_age = data['age']
+        elif (data['age'] < global min_age):
+            global min_age = data['age']
             print('Updating min age')
         else:
             pass
 
         #update min and max bmi
-        if (data['bmi'] > max_bmi):
-            max_bmi = data['bmi']
+        if (data['bmi'] > global max_bmi):
+            global max_bmi = data['bmi']
             print('Updating max bmi')
-        elif (data['bmi'] < min_bmi):
-            min_age = data['bmi']
+        elif (data['bmi'] < global min_bmi):
+            global min_age = data['bmi']
             print('Updating min bmi')
         else:
             pass
 
         #normalize age
-        data['age'] = (data['age'] - min_age)/(max_age-min_age)
+        data['age'] = (data['age'] - global min_age)/(global max_age - global min_age)
 
         #normalize bmi
-        data['bmi'] = (data['bmi'] - min_bmi)/(max_bmi-min_bmi)
+        data['bmi'] = (data['bmi'] - global min_bmi)/(global max_bmi - global min_bmi)
 
         ar = np.array([[data['age'], 
                         data['bmi'], 
@@ -113,7 +113,7 @@ def predict_mammogram():
                         1 if data['mammtype']==2 else 0
                         ]])
 
-        df2 = pd.DataFrame(ar, columns = final_df_columns)
+        df2 = pd.DataFrame(ar, columns = global final_df_columns)
 
         val = model.predict_proba(df2)
         
@@ -124,8 +124,10 @@ def predict_mammogram():
                         "assess_5": val[0][4],
                         "assess_6": val[0][5],
                         })
-    else:
+    '''else:
         return jsonify({"error":"Bad Request." , "Description":"Bad Method. Only POST is accepted"})
+    '''
+
 
 # A welcome message to test our server
 @app.route('/')
@@ -135,7 +137,7 @@ def index():
 if __name__ == '__main__':
 
     """# Import dataset"""
-    df = pd.read_csv(DATA_PATH)
+    df = pd.read_csv(global DATA_PATH)
     
     """# Preprocessing"""
     
@@ -174,8 +176,8 @@ if __name__ == '__main__':
         X[feature] = X[feature].astype('category')
 
     #Save min and max of numerical variables
-    min_age , max_age = X['age_c'].min() , X['age_c'].max()
-    min_bmi , max_bmi = X['bmi_c'].min() , X['bmi_c'].max()
+    global min_age , global max_age = X['age_c'].min() , X['age_c'].max()
+    global min_bmi , global max_bmi = X['bmi_c'].min() , X['bmi_c'].max()
 
     # Preprocessing for numerical features : Normalize same as Standard Scaler
     for feature in numerical_features:
