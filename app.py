@@ -233,4 +233,6 @@ def predict_mammogram():
 def index():
     return "<h1>Welcome to our Breast Cancer Assistant API !!</h1> <p>max_age = {} </p>"
 
-app.run(port=5002)
+    
+if __name__ == '__main__':
+    app.run(port=5002)
