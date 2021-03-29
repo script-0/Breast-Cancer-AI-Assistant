@@ -11,140 +11,146 @@ from sklearn.model_selection import train_test_split
 
 from sklearn.ensemble import RandomForestClassifier
 
+
+app = Flask(__name__)
+CORS(app)
+
 #Global variables
+global min_age
+global max_age 
+global max_bmi
+global min_bmi
+global final_df_columns
+
 #global seed
 seed=11
 
 #global DATA_PATH
 DATA_PATH = "dataset/breast_mammogram_dataset.csv"
-'''
-    #global max_age
-    max_age=0
 
-    #global min_age
-    min_age=0 
+#global max_age
+max_age=0
 
-    #global max_bmi
-    max_bmi=0
+#global min_age
+min_age=0 
 
-    #global min_bmi
-    min_bmi=0
+#global max_bmi
+max_bmi=0
 
-    #global final_df_columns
-    final_df_columns = ['age_c', 
-                        'bmi_c', 
-                        'density_c_1.0', 
-                        'density_c_2.0', 
-                        'density_c_3.0',
-                        'density_c_4.0', 
-                        'famhx_c_0.0', 
-                        'famhx_c_1.0', 
-                        'famhx_c_9.0',
-                        'hrt_c_0.0', 
-                        'hrt_c_1.0', 
-                        'hrt_c_9.0',
-                        'prvmam_c_0.0', 
-                        'prvmam_c_1.0',
-                        'prvmam_c_9.0',
-                        'biophx_c_0.0', 
-                        'biophx_c_1.0', 
-                        'biophx_c_9.0',
-                        'mammtype_1.0',
-                        'mammtype_2.0'
-                        ]
+#global min_bmi
+min_bmi=0
 
-    #global model
-'''
+#global final_df_columns
+final_df_columns = ['age_c', 
+                    'bmi_c', 
+                    'density_c_1.0', 
+                    'density_c_2.0', 
+                    'density_c_3.0',
+                    'density_c_4.0', 
+                    'famhx_c_0.0', 
+                    'famhx_c_1.0', 
+                    'famhx_c_9.0',
+                    'hrt_c_0.0', 
+                    'hrt_c_1.0', 
+                    'hrt_c_9.0',
+                    'prvmam_c_0.0', 
+                    'prvmam_c_1.0',
+                    'prvmam_c_9.0',
+                    'biophx_c_0.0', 
+                    'biophx_c_1.0', 
+                    'biophx_c_9.0',
+                    'mammtype_1.0',
+                    'mammtype_2.0'
+                    ]
 
-app = Flask(__name__)
-CORS(app)
+#global model
 
 @app.route('/mammogram',methods=['POST'])
 def predict_mammogram():
     global min_age
     global max_age 
     global max_bmi
+    global min_bmi
+
+    val = 50
+    data = request.get_json()
+
+    '''
+        {
+            'age' : float,
+            'density':int,
+            'famhx' : int,
+            'hrt' : int, 
+            'prvmam': int, 
+            'biophx' : int,
+            'mammtype': int, 
+            'bmi':float
+        }
+
+    '''
+
+    #update min and max age 
+    if (data['age'] > max_age):
+        max_age = data['age']
+        print('Updating max age')
+    elif (data['age'] < min_age):
+        # global min_age
+        min_age = data['age']
+        print('Updating min age')
+    else:
+        pass
+
+    #update min and max bmi
+    if (data['bmi'] > max_bmi):
+        #global max_age
+        max_bmi = data['bmi']
+        print('Updating max bmi')
+    elif (data['bmi'] < min_bmi):
+        #global min_bmi
+        min_bmi = data['bmi']
+        print('Updating min bmi')
+    else:
+        pass
+
+    #normalize age
+    data['age'] = (data['age'] - min_age)/( max_age - min_age)
+
+    #normalize bmi
+    data['bmi'] = (data['bmi'] - min_bmi)/( max_bmi - min_bmi)
+
+    ar = np.array([[data['age'], 
+                    data['bmi'], 
+                    1 if data['density']==1 else 0,
+                    1 if data['density']==2 else 0,
+                    1 if data['density']==3 else 0,
+                    1 if data['density']==4 else 0,
+                    1 if data['famhx']==0 else 0,
+                    1 if data['famhx']==1 else 0,
+                    1 if data['famhx']==9 else 0, 
+                    1 if data['hrt']==0 else 0,
+                    1 if data['hrt']==1 else 0,
+                    1 if data['hrt']==9 else 0, 
+                    1 if data['prvmam']==0 else 0,
+                    1 if data['prvmam']==1 else 0,
+                    1 if data['prvmam']==9 else 0, 
+                    1 if data['biophx']==0 else 0,
+                    1 if data['biophx']==1 else 0,
+                    1 if data['biophx']==9 else 0, 
+                    1 if data['mammtype']==1 else 0,
+                    1 if data['mammtype']==2 else 0
+                    ]])
+
+    df2 = pd.DataFrame(ar, columns = final_df_columns)
+
+    val = model.predict_proba(df2)
     
-    if request.method == 'POST':
-        val = 50
-        data = request.get_json()
-
-        '''
-            {
-                'age' : float,
-                'density':int,
-                'famhx' : int,
-                'hrt' : int, 
-                'prvmam': int, 
-                'biophx' : int,
-                'mammtype': int, 
-                'bmi':float
-            }
-
-        '''
-
-        #update min and max age 
-        if (data['age'] > max_age):
-            max_age = data['age']
-            print('Updating max age')
-        elif (data['age'] < min_age):
-            # global min_age
-            min_age = data['age']
-            print('Updating min age')
-        else:
-            pass
-
-        #update min and max bmi
-        if (data['bmi'] > max_bmi):
-            #global max_age
-            max_bmi = data['bmi']
-            print('Updating max bmi')
-        elif (data['bmi'] < min_bmi):
-            #global min_bmi
-            min_bmi = data['bmi']
-            print('Updating min bmi')
-        else:
-            pass
-
-        #normalize age
-        data['age'] = (data['age'] - min_age)/( max_age - min_age)
-
-        #normalize bmi
-        data['bmi'] = (data['bmi'] - min_bmi)/( max_bmi - min_bmi)
-
-        ar = np.array([[data['age'], 
-                        data['bmi'], 
-                        1 if data['density']==1 else 0,
-                        1 if data['density']==2 else 0,
-                        1 if data['density']==3 else 0,
-                        1 if data['density']==4 else 0,
-                        1 if data['famhx']==0 else 0,
-                        1 if data['famhx']==1 else 0,
-                        1 if data['famhx']==9 else 0, 
-                        1 if data['hrt']==0 else 0,
-                        1 if data['hrt']==1 else 0,
-                        1 if data['hrt']==9 else 0, 
-                        1 if data['prvmam']==0 else 0,
-                        1 if data['prvmam']==1 else 0,
-                        1 if data['prvmam']==9 else 0, 
-                        1 if data['biophx']==0 else 0,
-                        1 if data['biophx']==1 else 0,
-                        1 if data['biophx']==9 else 0, 
-                        1 if data['mammtype']==1 else 0,
-                        1 if data['mammtype']==2 else 0
-                        ]])
-
-        df2 = pd.DataFrame(ar, columns = final_df_columns)
-
-        val = model.predict_proba(df2)
-        
-        return jsonify({"assess_1": val[0][0],
-                        "assess_2": val[0][1],
-                        "assess_3": val[0][2],
-                        "assess_4": val[0][3],
-                        "assess_5": val[0][4],
-                        "assess_6": val[0][5],
-                        })
+    return jsonify({"assess_1": val[0][0],
+                    "assess_2": val[0][1],
+                    "assess_3": val[0][2],
+                    "assess_4": val[0][3],
+                    "assess_5": val[0][4],
+                    "assess_6": val[0][5],
+                    })
     '''else:
         return jsonify({"error":"Bad Request." , "Description":"Bad Method. Only POST is accepted"})
     '''
