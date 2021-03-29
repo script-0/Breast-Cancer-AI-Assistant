@@ -14,7 +14,11 @@ from sklearn.ensemble import RandomForestClassifier
 #Global variables
 seed=11
 DATA_PATH = "dataset/breast_mammogram_dataset.csv"
-max_age=0 , min_age=0 , max_bmi=0 , min_bmi=0
+
+max_age=0
+min_age=0 
+max_bmi=0
+min_bmi=0
 
 final_df_columns = ['age_c', 
                     'bmi_c', 
@@ -60,6 +64,32 @@ def predict_mammogram():
             }
 
         '''
+
+        #update min and max age 
+        if (data['age'] > max_age):
+            max_age = data['age']
+            print('Updating max age')
+        elif (data['age'] < min_age):
+            min_age = data['age']
+            print('Updating min age')
+        else:
+            
+        #update min and max bmi
+        if (data['bmi'] > max_bmi):
+            max_bmi = data['bmi']
+            print('Updating max bmi')
+        elif (data['bmi'] < min_bmi):
+            min_age = data['bmi']
+            print('Updating min bmi')
+        else:
+
+        #normalize age
+        data['age'] = (data['age'] - min_age)/(max_age-min_age)
+
+        #normalize bmi
+        data['bmi'] = (data['bmi'] - min_bmi)/(max_bmi-min_bmi)
+
+        
         ar = np.array([[data['age'], 
                         data['bmi'], 
                         1 if data['density']==1 else 0,
