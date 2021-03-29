@@ -63,7 +63,7 @@ final_df_columns = ['age_c',
                     'mammtype_2.0'
                     ]
 
-#global model
+model = None
 
 @app.route('/mammogram',methods=['POST'])
 def predict_mammogram():
@@ -72,7 +72,6 @@ def predict_mammogram():
     global max_bmi
     global min_bmi
 
-    val = 50
     data = request.get_json()
 
     '''
@@ -103,8 +102,8 @@ def predict_mammogram():
     #update min and max bmi
     if (data['bmi'] > max_bmi):
         #global max_age
+        print('Updating max bmi from',max_age)
         max_bmi = data['bmi']
-        print('Updating max bmi')
     elif (data['bmi'] < min_bmi):
         #global min_bmi
         min_bmi = data['bmi']
@@ -159,46 +158,9 @@ def predict_mammogram():
 # A welcome message to test our server
 @app.route('/')
 def index():
-    return "<h1>Welcome to our Breast Cancer Assistant API !!</h1>"
+    return "<h1>Welcome to our Breast Cancer Assistant API !!</h1> <p>max_age = ", max_age , " </p>"
 
 if __name__ == '__main__':
-
-    #global max_age
-    max_age=0
-
-    #global min_age
-    min_age=0 
-
-    #global max_bmi
-    max_bmi=0
-
-    #global min_bmi
-    min_bmi=0
-
-    #global final_df_columns
-    final_df_columns = ['age_c', 
-                    'bmi_c', 
-                    'density_c_1.0', 
-                    'density_c_2.0', 
-                    'density_c_3.0',
-                    'density_c_4.0', 
-                    'famhx_c_0.0', 
-                    'famhx_c_1.0', 
-                    'famhx_c_9.0',
-                    'hrt_c_0.0', 
-                    'hrt_c_1.0', 
-                    'hrt_c_9.0',
-                    'prvmam_c_0.0', 
-                    'prvmam_c_1.0',
-                    'prvmam_c_9.0',
-                    'biophx_c_0.0', 
-                    'biophx_c_1.0', 
-                    'biophx_c_9.0',
-                    'mammtype_1.0',
-                    'mammtype_2.0'
-                    ]
-
-
     """# Import dataset"""
     df = pd.read_csv(DATA_PATH)
     
@@ -239,16 +201,16 @@ if __name__ == '__main__':
         X[feature] = X[feature].astype('category')
 
     #Save min and max of numerical variables
-    #global min_age
+    global min_age
     min_age = X['age_c'].min()
     
-    #global max_age 
+    global max_age 
     max_age = X['age_c'].max()
 
-    #global min_bmi
+    global min_bmi
     min_bmi = X['bmi_c'].max()
 
-    #global max_bmi
+    global max_bmi
     max_bmi = X['bmi_c'].min() 
 
     # Preprocessing for numerical features : Normalize same as Standard Scaler
@@ -262,7 +224,7 @@ if __name__ == '__main__':
     x_train, x_test, y_train, y_test = train_test_split(X,y,test_size = 0.2,random_state=0)
     
     """## Random Forest"""
-    #global model
+    global model
     model = RandomForestClassifier(n_estimators=1000, random_state=1)
     
     #global model
