@@ -17,43 +17,44 @@ seed=11
 
 #global DATA_PATH
 DATA_PATH = "dataset/breast_mammogram_dataset.csv"
+'''
+    #global max_age
+    max_age=0
 
-#global max_age
-max_age=0
+    #global min_age
+    min_age=0 
 
-#global min_age
-min_age=0 
+    #global max_bmi
+    max_bmi=0
 
-#global max_bmi
-max_bmi=0
+    #global min_bmi
+    min_bmi=0
 
-#global min_bmi
-min_bmi=0
+    #global final_df_columns
+    final_df_columns = ['age_c', 
+                        'bmi_c', 
+                        'density_c_1.0', 
+                        'density_c_2.0', 
+                        'density_c_3.0',
+                        'density_c_4.0', 
+                        'famhx_c_0.0', 
+                        'famhx_c_1.0', 
+                        'famhx_c_9.0',
+                        'hrt_c_0.0', 
+                        'hrt_c_1.0', 
+                        'hrt_c_9.0',
+                        'prvmam_c_0.0', 
+                        'prvmam_c_1.0',
+                        'prvmam_c_9.0',
+                        'biophx_c_0.0', 
+                        'biophx_c_1.0', 
+                        'biophx_c_9.0',
+                        'mammtype_1.0',
+                        'mammtype_2.0'
+                        ]
 
-#global final_df_columns
-final_df_columns = ['age_c', 
-                    'bmi_c', 
-                    'density_c_1.0', 
-                    'density_c_2.0', 
-                    'density_c_3.0',
-                    'density_c_4.0', 
-                    'famhx_c_0.0', 
-                    'famhx_c_1.0', 
-                    'famhx_c_9.0',
-                    'hrt_c_0.0', 
-                    'hrt_c_1.0', 
-                    'hrt_c_9.0',
-                    'prvmam_c_0.0', 
-                    'prvmam_c_1.0',
-                    'prvmam_c_9.0',
-                    'biophx_c_0.0', 
-                    'biophx_c_1.0', 
-                    'biophx_c_9.0',
-                    'mammtype_1.0',
-                    'mammtype_2.0'
-                    ]
-
-#global model
+    #global model
+'''
 
 app = Flask(__name__)
 CORS(app)
@@ -148,6 +149,42 @@ def index():
     return "<h1>Welcome to our Breast Cancer Assistant API !!</h1>"
 
 if __name__ == '__main__':
+
+    global max_age
+    max_age=0
+
+    global min_age
+    min_age=0 
+
+    global max_bmi
+    max_bmi=0
+
+    global min_bmi
+    min_bmi=0
+
+    global final_df_columns
+    final_df_columns = ['age_c', 
+                    'bmi_c', 
+                    'density_c_1.0', 
+                    'density_c_2.0', 
+                    'density_c_3.0',
+                    'density_c_4.0', 
+                    'famhx_c_0.0', 
+                    'famhx_c_1.0', 
+                    'famhx_c_9.0',
+                    'hrt_c_0.0', 
+                    'hrt_c_1.0', 
+                    'hrt_c_9.0',
+                    'prvmam_c_0.0', 
+                    'prvmam_c_1.0',
+                    'prvmam_c_9.0',
+                    'biophx_c_0.0', 
+                    'biophx_c_1.0', 
+                    'biophx_c_9.0',
+                    'mammtype_1.0',
+                    'mammtype_2.0'
+                    ]
+
 
     """# Import dataset"""
     df = pd.read_csv(DATA_PATH)
