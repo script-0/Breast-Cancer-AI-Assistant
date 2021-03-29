@@ -81,9 +81,11 @@ def predict_mammogram():
 
         #update min and max age 
         if (data['age'] > max_age):
+            global max_age
             max_age = data['age']
             print('Updating max age')
         elif (data['age'] < min_age):
+            global min_age
             min_age = data['age']
             print('Updating min age')
         else:
@@ -91,10 +93,12 @@ def predict_mammogram():
 
         #update min and max bmi
         if (data['bmi'] > max_bmi):
+            global max_age
             max_bmi = data['bmi']
             print('Updating max bmi')
         elif (data['bmi'] < min_bmi):
-            min_age = data['bmi']
+            global min_bmi
+            min_bmi = data['bmi']
             print('Updating min bmi')
         else:
             pass
@@ -150,19 +154,19 @@ def index():
 
 if __name__ == '__main__':
 
-    global max_age
+    #global max_age
     max_age=0
 
-    global min_age
+    #global min_age
     min_age=0 
 
-    global max_bmi
+    #global max_bmi
     max_bmi=0
 
-    global min_bmi
+    #global min_bmi
     min_bmi=0
 
-    global final_df_columns
+    #global final_df_columns
     final_df_columns = ['age_c', 
                     'bmi_c', 
                     'density_c_1.0', 
@@ -226,16 +230,16 @@ if __name__ == '__main__':
         X[feature] = X[feature].astype('category')
 
     #Save min and max of numerical variables
-    global min_age
+    #global min_age
     min_age = X['age_c'].min()
     
-    global max_age 
+    #global max_age 
     max_age = X['age_c'].max()
 
-    global min_bmi
+    #global min_bmi
     min_bmi = X['bmi_c'].max()
 
-    global max_bmi
+    #global max_bmi
     max_bmi = X['bmi_c'].min() 
 
     # Preprocessing for numerical features : Normalize same as Standard Scaler
@@ -249,10 +253,10 @@ if __name__ == '__main__':
     x_train, x_test, y_train, y_test = train_test_split(X,y,test_size = 0.2,random_state=0)
     
     """## Random Forest"""
-    global model
+    #global model
     model = RandomForestClassifier(n_estimators=1000, random_state=1)
     
-    global model
+    #global model
     model.fit(x_train,y_train)
 
     app.run(port=5002)
