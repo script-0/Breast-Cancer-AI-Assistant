@@ -4,6 +4,10 @@ from flask_cors import CORS
 #Model imports
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import cv2
+import tensorflow as tf
+from tensorflow import keras
 
 from imblearn.over_sampling import SMOTENC
 
@@ -64,6 +68,27 @@ final_df_columns = ['age_c',
                     ]
 
 model = None
+
+
+@app.route('/biopsy',methods=['POST'])
+def predict_biopsy():
+    f =  request.files['file']
+    f.save('to_predict.png')
+    imgs = [] 
+    shape = 256
+    for i in range(15):
+        img = plt.imread('dataset/Dataset_BUSI_with_GT/f{}.png'.format(i+1))
+        img = cv2.resize(img, (shape, shape))
+        imgs.append(img)
+    shape=256
+    img = plt.imread('to_predict.png')
+    img = cv2.resize(img, (shape, shape))
+    imgs.append(img)
+    model = keras.models.load_model('model/keras_biopsy.h5')
+    preds = model.predict(np.array(imgs))
+    plt.imsave('predicted.png',preds[15][:,:,0])
+    return send_file('predicted.png')
+
 
 @app.route('/mammogram',methods=['POST'])
 def predict_mammogram():
@@ -160,8 +185,10 @@ def predict_mammogram():
 def index():
     return "<center><h1>Welcome to our Breast Cancer Assistant API !!</h1></center>"
 
-@app.before_first_request
-def init_model():
+#@app.before_first_request
+#def init_model():
+
+if __name__ == '__main__':
     """# Import dataset"""
     df = pd.read_csv(DATA_PATH)
     
@@ -231,6 +258,4 @@ def init_model():
     #global model
     model.fit(x_train,y_train)
     #model.fit(X,y)
-
-if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)
