@@ -8,13 +8,6 @@ import matplotlib.pyplot as plt
 import cv2
 
 
-from imblearn.over_sampling import SMOTENC
-
-from sklearn.model_selection import train_test_split
-
-from sklearn.ensemble import RandomForestClassifier
-
-
 app = Flask(__name__)
 CORS(app)
 
@@ -46,4 +39,4 @@ def index():
 #def init_model():
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False)
+    app.run()
