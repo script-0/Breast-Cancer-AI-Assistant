@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import cv2
+import tflite
 import keras
 
 app = Flask(__name__)
@@ -25,7 +26,7 @@ def predict_biopsy():
     img = plt.imread('to_predict.png')
     img = cv2.resize(img, (shape, shape))
     imgs.append(img)
-    model = keras.models.load_model('model/keras_biopsy.h5')
+    model = keras.models.load_model('model/keras_model.tflite')
     preds = model.predict(np.array(imgs))
     plt.imsave('predicted.png',preds[15][:,:,0])
     return send_file('predicted.png')
