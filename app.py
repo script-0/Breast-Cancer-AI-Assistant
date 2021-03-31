@@ -5,6 +5,7 @@ from flask_cors import CORS
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import cv2
 
 from imblearn.over_sampling import SMOTENC
 
