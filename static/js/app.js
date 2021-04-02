@@ -31,11 +31,9 @@ biopsy.addEventListener('click', () => {
   $('#process_biopsy').prop('disabled', true);
   $('#process_biopsy').html('<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Loading...');
   var files=  document.querySelector("#formFileSm").files;
-  console.log(files) 
   var formData = new FormData();
   formData.append("file",files[0]);
-  formData.append("test","test")
-  console.log(formData)
+  formData.append("test","test");
   var xhr = new XMLHttpRequest();
   xhr.open('post', URL+'biopsy', false);
   xhr.onload = function () {
@@ -58,7 +56,7 @@ biopsy.addEventListener('click', () => {
 
     //
     console.log(this.responseText);
-    
+
     $("#imageMask").prop('src',"data:image/png;base64,"+this.responseText)
                    .prop('width', 216)  //set the width of the image
                    .prop('height',200);  //set the height of the image;
@@ -107,14 +105,6 @@ mammogram.addEventListener("click", () => {
     console.log(res.assess_4)
     console.log(res.assess_5)
     response= [res]
-/*
-    response[0].assess_1 = parseFloat(response[0].assess_1 )
-    response[0].assess_2 = parseFloat(response[0].assess_2 )
-    response[0].assess_3 = parseFloat(response[0].assess_3 )
-    response[0].assess_4 = parseFloat(response[0].access_4 )
-    response[0].assess_5 = parseFloat(response[0].assess_5 )
-    response[0].assess_6 = parseFloat(response[0].assess_6 )
-    */
 
     $('#class_1').html(
       '<div class="progress-bar" role="progressbar" style="width:'+Math.round(response[0].assess_1 * 100)+'%;" aria-valuenow="'+Math.round(response[0].assess_1 * 100)+'" aria-valuemin="0" aria-valuemax="100">'+Math.round(response[0].assess_1 * 100)+'%</div>'
@@ -142,13 +132,3 @@ mammogram.addEventListener("click", () => {
   }
   xhr.send(params);
 });
-
-function getReadyToSend(object) {
-  var objList = [];
-  for (var prop in object) {
-    if (object.hasOwnProperty(prop)) {
-      objList.push(encodeURI(prop + '=' + object[prop]));
-    }
-  }
-  return objList.join("&");
-}
