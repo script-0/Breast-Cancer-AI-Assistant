@@ -89,7 +89,7 @@ mammogram.addEventListener("click", () => {
   
   var xhr = new XMLHttpRequest();
   xhr.open('POST', URL+'mammogram', true);
-  xhr.setRequestHeader('Content-type', ' application/json');
+  xhr.setRequestHeader('Content-type', ' application/json;charset=utf-8');
   xhr.onload = function () {
     if (xhr.status !== 200) {
       // When XAuth service unavailable.
@@ -130,5 +130,5 @@ mammogram.addEventListener("click", () => {
     $('#process_mammogram').html('Process');
     $('#process_mammogram').prop('disabled', false);
   }
-  xhr.send(params);
+  xhr.send( JSON.stringify(params) );
 });
