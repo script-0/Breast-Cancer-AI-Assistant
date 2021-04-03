@@ -47,6 +47,8 @@ def predict_biopsy():
     
 @app.route('/mammogram',methods=['POST'])
 def predict_mammogram():
+    #print('form = ',request.data, '  |  files = ',request.get_json())
+    data = request.get_json()
     return jsonify({"assess_1": 0.522,
                     "assess_2": 0.142,
                     "assess_3": 0,
