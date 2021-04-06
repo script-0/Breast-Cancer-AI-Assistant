@@ -89,7 +89,7 @@ mammogram.addEventListener("click", () => {
   
   var xhr = new XMLHttpRequest();
   xhr.open('POST', URL+'mammogram', true);
-  xhr.setRequestHeader('Content-type', ' application/json;charset=utf-8');
+  xhr.setRequestHeader('Content-type', 'application/json;charset=utf-8');
   xhr.onload = function () {
     if (xhr.status !== 200) {
       // When XAuth service unavailable.

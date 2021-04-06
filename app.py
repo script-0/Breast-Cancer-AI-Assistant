@@ -49,6 +49,28 @@ def predict_biopsy():
 def predict_mammogram():
     #print('form = ',request.data, '  |  files = ',request.get_json())
     data = request.get_json()
+    ar = np.array([[data['age'], 
+                    data['bmi'], 
+                    1 if data['density']==1 else 0,
+                    1 if data['density']==2 else 0,
+                    1 if data['density']==3 else 0,
+                    1 if data['density']==4 else 0,
+                    1 if data['famhx']==0 else 0,
+                    1 if data['famhx']==1 else 0,
+                    1 if data['famhx']==9 else 0, 
+                    1 if data['hrt']==0 else 0,
+                    1 if data['hrt']==1 else 0,
+                    1 if data['hrt']==9 else 0, 
+                    1 if data['prvmam']==0 else 0,
+                    1 if data['prvmam']==1 else 0,
+                    1 if data['prvmam']==9 else 0, 
+                    1 if data['biophx']==0 else 0,
+                    1 if data['biophx']==1 else 0,
+                    1 if data['biophx']==9 else 0, 
+                    1 if data['mammtype']==1 else 0,
+                    1 if data['mammtype']==2 else 0
+                    ]])
+
     return jsonify({"assess_1": 0.522,
                     "assess_2": 0.142,
                     "assess_3": 0,
