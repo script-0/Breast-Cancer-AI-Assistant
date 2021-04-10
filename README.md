@@ -23,4 +23,8 @@ The full description is presented on [Breast_Cancer.pdf](paper/Breast_Cancer.pdf
    * `python3 app.py`
    * The server would be launched. Open the web browser and enter the link `http://127.0.0.1:5000`, now you can use the project
 
-## Some Captures
+## More to come
+- [x] Installation Guide
+- [ ] Some Captures
+- [ ] Online Deploiement
+- [ ] For Developpers
