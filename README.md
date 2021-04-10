@@ -8,3 +8,19 @@ Initiated within the frame of MLPC Pipo  Competition, it is a web application ba
 All backed with Flask.
 The full description is presented on [Breast_Cancer.pdf](paper/Breast_Cancer.pdf)
 <hr>
+
+## Installation Guide
+1. Install python 3.7 (if it is not installed ) :
+   - `sudo apt update`
+   - `sudo apt install software-properties-common`
+   - `sudo add-apt-repository ppa:deadsnakes/ppa`
+   - `sudo apt update`
+   - `sudo apt install python3.7`
+2. Clone the repository : `git clone -b main https://github.com/script-0/Breast-Cancer-AI-Assistant/`
+3. Open (Enter in) the directory : `Breast-Cancer-AI-Assistant`
+4. Install the dependancies : `pip3 install -r requirements.txt`
+5. Run the program:
+   * `python3 app.py`
+   * The server would be launched. Open the web browser and enter the link `<http://127.0.0.1:5000>`, now you can use the project
+
+## Some Captures
