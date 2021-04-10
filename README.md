@@ -21,6 +21,6 @@ The full description is presented on [Breast_Cancer.pdf](paper/Breast_Cancer.pdf
 4. Install the dependancies : `pip3 install -r requirements.txt`
 5. Run the program:
    * `python3 app.py`
-   * The server would be launched. Open the web browser and enter the link `<http://127.0.0.1:5000>`, now you can use the project
+   * The server would be launched. Open the web browser and enter the link `http://127.0.0.1:5000`, now you can use the project
 
 ## Some Captures
