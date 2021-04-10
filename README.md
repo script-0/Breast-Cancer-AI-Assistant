@@ -1,0 +1,2 @@
+# Breast-Cancer-AI-Assistant
+Initiated within the frame of MLPC Pipo  Competition, it is a web application based  AI  assistant  useful for  cancerologists  to  determine  whether  patients suffering  or likely to suffer from breast cancer. This is done in 02 steps - 1- Mammography ( considering patient's medical past results ) - 2- Biopsy ( realizing the tumor's mask from mammogram). - All backed with Flask
