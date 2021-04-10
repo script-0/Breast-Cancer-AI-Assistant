@@ -272,3 +272,4 @@ if __name__ == '__main__':
     model.fit(x_train,y_train)
     #model.fit(X,y)
     app.run(debug=True, use_reloader=False)
+
