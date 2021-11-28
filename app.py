@@ -141,7 +141,7 @@ def predict_mammogram():
 
     df2 = pd.DataFrame(ar, columns = final_df_columns)
 
-    val = model.predict_proba(df2)
+    val = model.predict(df2)
     
     return jsonify({"assess_1": val[0][0],
                     "assess_2": val[0][1],
