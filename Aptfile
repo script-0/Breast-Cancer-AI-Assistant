@@ -4,3 +4,4 @@ libfontconfig1
 libice6
 libxext6
 libgl1
+libgl1-mesa-glx
