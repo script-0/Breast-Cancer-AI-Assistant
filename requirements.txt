@@ -1,5 +1,4 @@
-opencv-python
-opencv-python-headless==4.5.3.56
+opencv-contrib-python-headless
 Flask==2.0.2
 flask_cors==3.0.10
 imblearn==0.0
