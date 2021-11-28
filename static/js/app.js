@@ -5,7 +5,7 @@ const mammogram = document.querySelector("#process_mammogram");
 const biopsy = document.querySelector("#process_biopsy");
 const upload = document.querySelector("#formFileSm");
 
-const URL = '/'
+const URL = 'https://breast-cancer-assistant.herokuapp.com/'
 
 sign_up_btn.addEventListener("click", () => {
   container.classList.add("sign-up-mode");  
