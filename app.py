@@ -10,6 +10,7 @@ import cv2
 import tensorflow as tf
 from tensorflow import keras
 from joblib import load
+import lightgbm
 
 app = Flask(__name__)
 CORS(app)
