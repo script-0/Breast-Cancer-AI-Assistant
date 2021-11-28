@@ -9,12 +9,6 @@ import matplotlib.pyplot as plt
 import cv2
 import tensorflow as tf
 from tensorflow import keras
-
-from imblearn.over_sampling import SMOTENC
-
-from sklearn.model_selection import train_test_split
-
-from sklearn.ensemble import RandomForestClassifier
 from joblib import load
 
 app = Flask(__name__)

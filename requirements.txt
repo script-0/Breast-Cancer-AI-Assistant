@@ -1,10 +1,8 @@
 opencv-contrib-python-headless
 Flask==2.0.2
 flask_cors==3.0.10
-imblearn==0.0
 matplotlib==3.3.3
 numpy==1.19.5
 pandas==1.1.5
-scikit_learn==0.24.2
 tensorflow-cpu
 joblib
