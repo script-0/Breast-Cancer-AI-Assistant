@@ -80,7 +80,7 @@ def predict_biopsy():
     h,w,_ = img.shape
     img = cv2.resize(img, (shape, shape))
     imgs.append(img)
-    model = keras.models.load_model('model/keras_biopsy.tflite')
+    model = keras.models.load_model('model/keras_model.tflite')
     preds = model.predict(np.array(imgs))
     output = cv2.resize(preds[15][:,:,0], (w,h))
     #plt.imsave('predicted.png',preds[15][:,:,0])
