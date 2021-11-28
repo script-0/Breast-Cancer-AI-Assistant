@@ -5,7 +5,7 @@ const mammogram = document.querySelector("#process_mammogram");
 const biopsy = document.querySelector("#process_biopsy");
 const upload = document.querySelector("#formFileSm");
 
-const URL = 'http://127.0.0.1:5000/'
+const URL = '/'
 
 sign_up_btn.addEventListener("click", () => {
   container.classList.add("sign-up-mode");  
@@ -89,7 +89,7 @@ mammogram.addEventListener("click", () => {
   
   var xhr = new XMLHttpRequest();
   xhr.open('POST', URL+'mammogram', true);
-  xhr.setRequestHeader('Content-type', ' application/json;charset=utf-8');
+  xhr.setRequestHeader('Content-type', 'application/json;charset=utf-8');
   xhr.onload = function () {
     if (xhr.status !== 200) {
       // When XAuth service unavailable.
