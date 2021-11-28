@@ -6,4 +6,4 @@ matplotlib==3.3.3
 numpy==1.19.5
 pandas==1.1.5
 scikit_learn==0.24.2
-tensorflow-cpu==2.6.2
+tensorflow-cpu
