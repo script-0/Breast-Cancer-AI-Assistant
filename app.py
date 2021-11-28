@@ -64,8 +64,6 @@ final_df_columns = ['age_c',
                     'mammtype_2.0'
                     ]
 
-model = None
-
 
 @app.route('/biopsy',methods=['POST'])
 def predict_biopsy():
@@ -141,6 +139,7 @@ def predict_mammogram():
 
     df2 = pd.DataFrame(ar, columns = final_df_columns)
 
+    model =  load('model/mammography.joblib')
     val = model.predict(df2)
     
     return jsonify({"assess_1": val[0][0],
@@ -163,5 +162,4 @@ def index():
 #def init_model():
 
 if __name__ == '__main__':
-    model =  load('model/mammography.joblib')
     app.run(debug=True, use_reloader=False)
