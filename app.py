@@ -254,11 +254,9 @@ if __name__ == '__main__':
     max_bmi = X['bmi_c'].min() 
 
     # Preprocessing for numerical features : Normalize same as Standard Scaler
-    """for feature in numerical_features:
-        X[feature] = (X[feature] - np.min(X[feature])) / (np.max(X[feature]) - np.min(X[feature]))
-    """
-
-    X[feature] = X[feature] / 100.0
+    for feature in numerical_features:
+        #X[feature] = (X[feature] - np.min(X[feature])) / (np.max(X[feature]) - np.min(X[feature]))
+        X[feature] = X[feature]/100
 
     # Preprocessing for categorical features : same as OneHotEncoder
     X = pd.get_dummies(X)
