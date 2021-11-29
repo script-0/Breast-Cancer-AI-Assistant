@@ -26,5 +26,5 @@ The full description is presented on [Breast_Cancer.pdf](paper/Breast_Cancer.pdf
 ## More to come
 - [x] Installation Guide
 - [ ] Some Captures
-- [ ] Online Deploiement
+- [x] Deploy
 - [ ] For Developpers
