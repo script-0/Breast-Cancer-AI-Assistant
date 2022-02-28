@@ -7,7 +7,22 @@ Initiated within the frame of MLPC Pipo  Competition, it is a web application ba
 
 All backed with Flask.
 The full description is presented on [Breast_Cancer.pdf](paper/Breast_Cancer.pdf)
-<hr>
+
+## Preview
+
+### Mammography
+<div style="width:100%">
+   <img src="https://user-images.githubusercontent.com/60468539/156038598-c24236c8-8e57-43b6-8927-16d445dd38c0.png" width="33%" />
+   <img src="https://user-images.githubusercontent.com/60468539/156038610-a77ab214-ff42-4eda-8d1d-d2293be8fa66.png" width="33%" />
+   <img src="https://user-images.githubusercontent.com/60468539/156038617-b13dbe44-5416-4a62-8aa1-4e9f052ed33c.png" width="33%" />
+</div>
+
+### Biopsy
+<div style="width:100%">
+   <img src="https://user-images.githubusercontent.com/60468539/156037344-555b0d52-d43b-4ce3-9ba2-ffa5433f17d4.png" width="33%" />
+   <img src="https://user-images.githubusercontent.com/60468539/156037370-37a16b53-f2d4-471a-8cb9-acfc08113d16.png" width="33%" />
+   <img src="https://user-images.githubusercontent.com/60468539/156037374-767a12c3-bad5-49da-a6bd-6167488873cb.png" width="33%" />
+</div>
 
 ## Installation Guide
 1. Install python 3.7 (if it is not installed ) :
@@ -28,6 +43,5 @@ Use version on `deploy` branch.
 
 ## More to come
 - [x] Installation Guide
-- [ ] Some Captures
+- [x] Some Captures
 - [x] Deploy
-- [ ] For Developpers
